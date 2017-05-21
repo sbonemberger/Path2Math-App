@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ubiquitouscomputing.path2math_app.Path2MathApp">
+    tools:context="ubiquitouscomputing.pat2math_app.PAT2MathApp">
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package ubiquitouscomputing.path2math_app;
+package ubiquitouscomputing.pat2math_app;
 
 import org.junit.Test;
 

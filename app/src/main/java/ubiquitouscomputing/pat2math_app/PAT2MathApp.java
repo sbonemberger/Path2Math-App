@@ -1,9 +1,9 @@
-package ubiquitouscomputing.path2math_app;
+package ubiquitouscomputing.pat2math_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Path2MathApp extends AppCompatActivity {
+public class PAT2MathApp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
