@@ -1,9 +1,11 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
+
+import ubiquitouscomputing.pat2math_app.R;
 
 public class Splash extends AppCompatActivity {
 

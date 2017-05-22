@@ -1,4 +1,4 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.model;
 
 public class Hint {
 	private String text;

@@ -1,4 +1,6 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.controller;
+
+import ubiquitouscomputing.pat2math_app.model.Exercise;
 
 public class Generator {
 	private static String[][] fractions = {{"5/10", "2/8", "4/6", "6/14", "15/20"},

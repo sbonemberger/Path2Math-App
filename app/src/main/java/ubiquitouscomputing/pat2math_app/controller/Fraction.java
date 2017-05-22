@@ -1,4 +1,4 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.controller;
 
 import java.util.ArrayList;
 

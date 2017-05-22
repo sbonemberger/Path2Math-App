@@ -4,4 +4,7 @@
     <string name="title_activity_splash">Splash</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_questionairre">Questionairre</string>
+
+    <string name="title_activity_questionnaire">Questionnaire</string>
 </resources>

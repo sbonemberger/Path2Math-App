@@ -1,4 +1,6 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.controller;
+
+import ubiquitouscomputing.pat2math_app.model.Hint;
 
 public class HintBank {
 	//As linhas representam os passos dos exerc�cios e as colunas os n�veis das dicas
@@ -11,7 +13,7 @@ public class HintBank {
 		simpHints[0][2] = "O pr�ximo passo da resolu��o �: (P)";
 	}
 	
-	public static Hint getHintSimplification(int step, int level, Fraction f) {		
+	public static Hint getHintSimplification(int step, int level, Fraction f) {
 		String text = simpHints[step][level];
 		
 		if (text.indexOf("(N)") != 0 || text.indexOf("(P)") != 0) {

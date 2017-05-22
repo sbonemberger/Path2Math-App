@@ -1,4 +1,10 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.model;
+
+import ubiquitouscomputing.pat2math_app.controller.Corrector;
+import ubiquitouscomputing.pat2math_app.controller.Feedback;
+import ubiquitouscomputing.pat2math_app.controller.Fraction;
+import ubiquitouscomputing.pat2math_app.controller.HintBank;
+import ubiquitouscomputing.pat2math_app.model.Hint;
 
 public class Exercise {
 	private Fraction initialFraction, currentFraction;

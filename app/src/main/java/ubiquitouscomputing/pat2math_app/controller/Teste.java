@@ -1,4 +1,6 @@
-package ubiquitouscomputing.pat2math_app;
+package ubiquitouscomputing.pat2math_app.controller;
+
+import ubiquitouscomputing.pat2math_app.model.Exercise;
 
 public class Teste {
 
