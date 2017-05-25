@@ -1,51 +1,40 @@
-package ubiquitouscomputing.pat2math_app.controller;
+﻿package ubiquitouscomputing.pat2math_app.controller;
 
 import ubiquitouscomputing.pat2math_app.model.Hint;
 
 public class Corrector {
 	
-	public static Feedback correctsSimplification(Fraction f, int divisor, int numeratorAnswer, int denominatorAnswer, int levelHint) {
+	public static Feedback correctsSimplification(Fraction f, double numeratorAnswer, double denominatorAnswer, int levelHint) {
 		int numerator = f.getNumerator();
 		int denominator = f.getDenominator();
 		Hint hint = HintBank.getHintSimplification(0, levelHint, f);
 		
-		if (numerator % divisor == 0 && denominator % divisor == 0) {
-			int newNumerator = numerator / divisor;
-			int newDenominator = denominator / divisor;
-			
-			if (newNumerator == numeratorAnswer || newDenominator == denominatorAnswer) {
-				
-				if (newNumerator == numeratorAnswer) {
-					if (newDenominator == denominatorAnswer) {
-						Fraction irreducibleFormat = f.getIrreducibleFormat();
+		double divisorNumerator = numerator / numeratorAnswer;		
+		double divisorDenominator = denominator / denominatorAnswer;
+		
+		if (divisorNumerator % 1 == 0 && divisorDenominator % 1 == 0) {
+			if (divisorNumerator == divisorDenominator) {
+				Fraction irreducibleFormat = f.getIrreducibleFormat();
 						
-						if (irreducibleFormat.getNumerator() == numeratorAnswer && irreducibleFormat.getDenominator() == denominatorAnswer)
-							return new Feedback(true, true);
+				if (irreducibleFormat.getNumerator() == numeratorAnswer && irreducibleFormat.getDenominator() == denominatorAnswer)
+					return new Feedback(true, true);
 						
-						else
-							return new Feedback(true, false);
-					}
-					
-					else 			
-						return new Feedback(false, false, hint, "Voc� errou o c�lculo da divis�o no denominador");
-				}
-				
-				else 
-					return new Feedback(false, false, hint, "Voc� errou o c�lculo da divis�o no numerador");	
+				else
+					return new Feedback(true, false);
 			}
-						
-			else 
-				return new Feedback(false, false, hint, "Voc� errou o c�lculo da divis�o no numerador e no denominador");			
+			
+			else
+				return new Feedback(false, false, hint, "Você utilizou divisores diferentes para o numerador e o denominador. Lembre-se que o número divisor deve ser o mesmo para ambos");
 		}
 		
-		else if (numerator % divisor == 0) 
-			return new Feedback(false, false, hint, "O denominador (" + denominator + ") n�o pode ser dividido por " + divisor);
+		else if (divisorNumerator % 1 != 0) 
+			return new Feedback(false, false, hint, "Você errou o cálculo da divisão no numerador");	
 				
 		
-		else if (denominator % divisor == 0) 
-			return new Feedback(false, false, hint, "O numerador (" + numerator + ") n�o pode ser dividido por " + divisor);
+		else if (divisorDenominator % 1 != 0) 
+			return new Feedback(false, false, hint, "Você errou o cálculo da divisão no denominador");
 		
 		else
-			return new Feedback(false, false, hint, "O numerador e o denominador (" + numerator + " e " + denominator + ") n�o podem ser divididos por " + divisor);
+			return new Feedback(false, false, hint, "Você errou o cálculo da divisão no numerador e no denominador");
 	}
 }
