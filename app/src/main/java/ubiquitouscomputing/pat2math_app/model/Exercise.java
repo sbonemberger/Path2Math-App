@@ -18,7 +18,7 @@ public class Exercise {
 		this.isSolved = false;
 	}
 	
-	public Feedback answer(int numeratorAnswer, int denominatorAnswer) {
+	public Feedback answer(double numeratorAnswer, double denominatorAnswer) {
 		Feedback f = Corrector.correctsSimplification(currentFraction, numeratorAnswer, denominatorAnswer, levelHint);
 		
 		if (f.isCorrectAnswer()) {
