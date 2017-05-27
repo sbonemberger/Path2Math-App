@@ -1,4 +1,4 @@
-package ubiquitouscomputing.pat2math_app.model;
+﻿package ubiquitouscomputing.pat2math_app.model;
 
 import ubiquitouscomputing.pat2math_app.controller.Corrector;
 import ubiquitouscomputing.pat2math_app.controller.Feedback;
@@ -18,11 +18,13 @@ public class Exercise {
 		this.isSolved = false;
 	}
 	
-	public Feedback answer(int divisor, int numeratorAnswer, int denominatorAnswer) {
-		Feedback f = Corrector.correctsSimplification(currentFraction, divisor, numeratorAnswer, denominatorAnswer, levelHint);
+	public Feedback answer(double numeratorAnswer, double denominatorAnswer) {
+		Feedback f = Corrector.correctsSimplification(currentFraction, numeratorAnswer, denominatorAnswer, levelHint);
 		
 		if (f.isCorrectAnswer()) {
 			levelHint = 0;
+			
+			int divisor = currentFraction.getNumerator() / numeratorAnswer;
 			currentFraction.simplify(divisor);
 			
 			if (f.isFinalAnswer()) {
@@ -33,7 +35,7 @@ public class Exercise {
 			else {
 				earnedPoints += 10;
 				
-				//Verifica se a soma dos pontos ganhos e perdidos ultrapassa o valor m�ximo de pontos do exerc�cio
+				//Verifica se a soma dos pontos ganhos e perdidos ultrapassa o valor máximo de pontos do exercício
 				//Se sim, remove os 10 pontos salvos anteriormente
 				if ((earnedPoints + lostPoints) >= maxPoints)
 					earnedPoints -= 10;
