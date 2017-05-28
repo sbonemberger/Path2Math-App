@@ -9,7 +9,7 @@ public class Teste {
 		Exercise e = new Exercise(f, 20);
 		HintBank.createHintBank();
 		
-		System.out.println(e.answer(10, 5, 10));
+		System.out.println(e.answer(10, 5));
 		System.out.println("");
 		System.out.println(e);
 	}

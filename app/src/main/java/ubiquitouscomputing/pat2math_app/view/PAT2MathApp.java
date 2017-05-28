@@ -23,7 +23,7 @@ public class PAT2MathApp extends AppCompatActivity {
 
     public void addListenerOnStartButton() {
 
-        Button b = (Button) findViewById(R.id.button);
+        Button b = (Button) findViewById(R.id.start_button);
 
         b.setOnClickListener(new OnClickListener() {
 

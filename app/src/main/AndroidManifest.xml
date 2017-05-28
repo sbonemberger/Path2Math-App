@@ -21,7 +21,8 @@
         <activity
             android:name=".view.Questionnaire"
             android:label="@string/title_activity_questionnaire"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

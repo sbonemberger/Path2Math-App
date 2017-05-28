@@ -13,10 +13,10 @@ public class Generator {
 	
 	private static LinkedList<String>[] fractionsLists;
 	
-	//0 = Muito Fácil
-	//1 = Fácil
-	//2 = Médio
-	//3 = Difícil
+	//0 = Muito FÃ¡cil
+	//1 = FÃ¡cil
+	//2 = MÃ©dio
+	//3 = DifÃ­cil
 	//4 = Desafio
 	
 	public static void generateLists() {
@@ -32,7 +32,7 @@ public class Generator {
 	
 	public static void generateList(int difficultyLevel) {	
 		for (int j = 0; j < fractions[difficultyLevel].length; j++) {
-			//Inverte a fração para se tornar um exercício diferente
+			//Inverte a fraï¿½ï¿½o para se tornar um exercï¿½cio diferente
 			String[] temp = fractions[difficultyLevel][j].split("/");
 			fractions[difficultyLevel][j] = temp[1] + "/" + temp[0];
 			
@@ -58,7 +58,7 @@ public class Generator {
 		Fraction f;
 		int sizeList = fractionsLists[difficultyLevel].size();
 		
-		//Neste momento, a lista atual ficará vazia e deverá ser preenchida novamente
+		//Neste momento, a lista atual ficarï¿½ vazia e deverï¿½ ser preenchida novamente
 		if (sizeList == 1) {
 			f = new Fraction(fractionsLists[difficultyLevel].removeFirst());
 			generateList(difficultyLevel);

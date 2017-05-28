@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/tx_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -29,105 +29,105 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/tx_p1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView29"
+            android:layout_below="@+id/tx_title"
             android:layout_marginTop="7dp"
             android:text="1. You start with 180 seconds to solve as much exercises as you can."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/tx_p2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView31"
+            android:layout_below="@+id/tx_p1"
             android:layout_marginTop="7dp"
             android:text="2. Each exercise you solve correctly you score 10 points multiplied by the leve of the exercise and moves to the next one"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/tx_p3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView30"
+            android:layout_below="@+id/tx_p2"
             android:layout_marginTop="9dp"
             android:text="3. If you answer correctly 3 times in a row you gain another 30 seconds and go up a level."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/tx_p4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView34"
+            android:layout_below="@+id/tx_p3"
             android:layout_marginTop="7dp"
             android:text="4. Every level presents harder exercises than the previous one."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/tx_p5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView35"
+            android:layout_below="@+id/tx_p4"
             android:layout_marginTop="8dp"
             android:text="5. The only way to move to another exercise is either by solving it correctly or skipping it."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/tx_p6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView40"
+            android:layout_below="@+id/tx_p5"
             android:layout_marginTop="9dp"
             android:text="6. You can skip exercises 3 times."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/tx_p7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView36"
+            android:layout_below="@+id/tx_p6"
             android:layout_marginTop="7dp"
             android:text="7. Each time you skip ans exercise you go down a level and loses 10 points."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/tx_p8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView39"
+            android:layout_below="@+id/tx_p7"
             android:layout_marginTop="9dp"
             android:text="8. When you run out of time the game ends and your score is computed."
             android:textAlignment="viewStart"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/start_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
