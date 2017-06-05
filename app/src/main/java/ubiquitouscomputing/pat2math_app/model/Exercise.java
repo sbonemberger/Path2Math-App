@@ -9,6 +9,10 @@ public class Exercise {
     private int maxPoints, earnedPoints, lostPoints, numErrors, levelHint;
     private boolean isSolved;
 
+    public Exercise (){
+
+    }
+
     public Exercise(Fraction f, int maxPoints) {
         this.initialFraction = f;
         this.currentFraction = new Fraction(f.getNumerator(), f.getDenominator());

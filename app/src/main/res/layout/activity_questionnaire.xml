@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,5 +12,179 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PATToMath Challenge"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_toLeftOf="@+id/btOK"
+            android:layout_toStartOf="@+id/btOK" />
+
+        <TextView
+            android:id="@+id/txNumerator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="57dp"
+            android:text="64"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txDenominator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txNumerator"
+            android:layout_alignStart="@+id/txNumerator"
+            android:layout_below="@+id/txNumerator"
+            android:layout_marginTop="39dp"
+            android:text="32"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/etNumerator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/txNumerator"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/txNumerator"
+            android:layout_toRightOf="@+id/txNumerator"
+            android:ems="10"
+            android:inputType="number"
+            android:text="numerator" />
+
+        <EditText
+            android:id="@+id/etDenominator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/etNumerator"
+            android:layout_alignStart="@+id/etNumerator"
+            android:layout_alignTop="@+id/txDenominator"
+            android:ems="10"
+            android:inputType="number"
+            android:text="denominator" />
+
+        <Button
+            android:id="@+id/btOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:layout_below="@+id/etNumerator"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/btSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="7dp"
+            android:text="Skip" />
+
+        <TextView
+            android:id="@+id/txNumeratorStep2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txDenominator"
+            android:layout_alignStart="@+id/txDenominator"
+            android:layout_below="@+id/etDenominator"
+            android:layout_marginTop="68dp"
+            android:text="32"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txDenominatorStep2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txNumeratorStep2"
+            android:layout_alignStart="@+id/txNumeratorStep2"
+            android:layout_below="@+id/txNumeratorStep2"
+            android:layout_marginTop="61dp"
+            android:text="16"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/etNumeratorStep2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/etDenominator"
+            android:layout_alignStart="@+id/etDenominator"
+            android:layout_alignTop="@+id/txNumeratorStep2"
+            android:ems="10"
+            android:inputType="number"
+            android:text="numerator2" />
+
+        <EditText
+            android:id="@+id/etDenominatorStep2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/etNumeratorStep2"
+            android:layout_alignRight="@+id/etNumeratorStep2"
+            android:layout_below="@+id/etNumeratorStep2"
+            android:layout_marginTop="38dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="denominator2" />
+
+        <Button
+            android:id="@+id/btOK2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etNumeratorStep2"
+            android:layout_toEndOf="@+id/etNumeratorStep2"
+            android:layout_toRightOf="@+id/etNumeratorStep2"
+            android:text="OK" />
+
+        <ImageView
+            android:id="@+id/imgCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btOK"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@+id/etDenominator"
+            app:srcCompat="@android:drawable/checkbox_on_background" />
+
+        <ImageView
+            android:id="@+id/imgIncorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btOK"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@+id/etDenominator"
+            app:srcCompat="@android:drawable/btn_dialog" />
+
+        <TextView
+            android:id="@+id/txTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/txTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/etNumerator"
+            android:layout_toRightOf="@+id/etNumerator"
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 
 </FrameLayout>
