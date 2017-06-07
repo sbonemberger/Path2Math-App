@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import ubiquitouscomputing.pat2math_app.R;
+import ubiquitouscomputing.pat2math_app.controller.Preferencias;
 
 
 public class PAT2MathApp extends AppCompatActivity {
@@ -17,6 +19,9 @@ public class PAT2MathApp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path2_math_app);
 
+//        Preferencias p = new Preferencias(this);
+//        int i = p.lerDificuldade();
+//        Toast.makeText(this, "Dificuldade: " + i, Toast.LENGTH_SHORT).show();
         addListenerOnStartButton();
 
     }
