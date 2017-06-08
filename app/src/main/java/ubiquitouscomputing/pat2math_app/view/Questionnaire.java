@@ -1,5 +1,6 @@
 package ubiquitouscomputing.pat2math_app.view;
 
+import android.content.Intent;
 import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class Questionnaire extends AppCompatActivity {
     Button btOK, btOK2;
     ImageView imgCorrect, imgIncorrect;
     long startTime;
-    int timeLeft = 180000;
+    int timeLeft = 5000;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -96,6 +97,18 @@ public class Questionnaire extends AppCompatActivity {
     public void timeOut(){
         timerHandler.removeCallbacks(timerRunnable);
 
+        endGame();
+    }
+
+    public void endGame() {
+
+        int secondsDelayed = 1;
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                startActivity(new Intent(Questionnaire.this, ResultTable.class));
+                finish();
+            }
+        }, secondsDelayed * 500);
     }
 
     public void loadNewExercise(){

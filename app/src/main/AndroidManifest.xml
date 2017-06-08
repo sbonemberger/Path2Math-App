@@ -23,6 +23,12 @@
             android:label="@string/title_activity_questionnaire"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".view.ResultTable"
+            android:label="Result Table"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
