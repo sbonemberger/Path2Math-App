@@ -10,10 +10,17 @@
         android:text="Game Over"
         android:textAlignment="center"
         android:textSize="24sp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="Try Again"
+        android:onClick="tryClick"/>
 
-    <RelativeLayout
+    <ListView
+        android:id="@+id/listResultado"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    </RelativeLayout>
+    </ListView>
 </LinearLayout>

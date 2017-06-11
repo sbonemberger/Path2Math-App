@@ -1,7 +1,9 @@
 package ubiquitouscomputing.pat2math_app.model;
 
 
-public class Score {
+import android.support.annotation.NonNull;
+
+public class Score implements Comparable {
 
     private int points;
     private String player;
@@ -25,5 +27,11 @@ public class Score {
 
     public int getPoints(){
         return this.points;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int comparePoint = ((Score)o).getPoints();
+        return comparePoint-this.points;
     }
 }
