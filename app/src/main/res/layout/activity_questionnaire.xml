@@ -21,11 +21,12 @@
             android:id="@+id/txTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PATToMath Challenge"
-            android:textAlignment="center"
-            android:textSize="24sp"
             android:layout_toLeftOf="@+id/btOK"
-            android:layout_toStartOf="@+id/btOK" />
+            android:layout_toStartOf="@+id/btOK"
+            android:text="PAT2Math Challenge"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txNumerator"

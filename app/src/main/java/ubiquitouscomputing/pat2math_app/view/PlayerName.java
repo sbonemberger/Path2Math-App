@@ -1,23 +1,24 @@
 package ubiquitouscomputing.pat2math_app.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.content.Intent;
-import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
 
 import ubiquitouscomputing.pat2math_app.R;
-import ubiquitouscomputing.pat2math_app.controller.Preferencias;
 
-
-public class PAT2MathApp extends AppCompatActivity {
+/**
+ * A login screen that offers login via email/password.
+ */
+public class PlayerName extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_path2_math_app);
+        setContentView(R.layout.activity_player_name);
 
         addListenerOnStartButton();
 
@@ -25,14 +26,17 @@ public class PAT2MathApp extends AppCompatActivity {
 
     public void addListenerOnStartButton() {
 
-        Button b = (Button) findViewById(R.id.btStart);
+        Button b = (Button) findViewById(R.id.btLogin);
 
         b.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent i =  new Intent(PAT2MathApp.this, PlayerName.class);
+                EditText e = (EditText) findViewById(R.id.etPlayerName);
+
+                Intent i =  new Intent(PlayerName.this, Questionnaire.class);
+                i.putExtra("PlayerName", e.getText().toString());
                 startActivity(i);
                 finish();
 
@@ -41,4 +45,6 @@ public class PAT2MathApp extends AppCompatActivity {
         });
 
     }
+
 }
+

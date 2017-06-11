@@ -1,11 +1,9 @@
 package ubiquitouscomputing.pat2math_app.view;
 
 import android.content.Intent;
-import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,10 +11,12 @@ import android.widget.TextView;
 import android.os.Handler;
 
 import ubiquitouscomputing.pat2math_app.R;
+import ubiquitouscomputing.pat2math_app.controller.GameManager;
 import ubiquitouscomputing.pat2math_app.controller.Generator;
 import ubiquitouscomputing.pat2math_app.controller.HintBank;
 import ubiquitouscomputing.pat2math_app.model.Exercise;
 import ubiquitouscomputing.pat2math_app.controller.Feedback;
+import ubiquitouscomputing.pat2math_app.controller.GameManager;
 
 
 /**
@@ -27,8 +27,10 @@ public class Questionnaire extends AppCompatActivity {
 
     TextView txNumerator, txDenominator, txNumerator2, txDenominator2, txTimer;
     EditText etNumerator, etDenominator, etNumerator2, etDenominator2;
-    Button btOK, btOK2;
+    Button btOK, btOK2, btSkip;
     ImageView imgCorrect, imgIncorrect;
+    String currentPlayerName;
+    GameManager gm;
     long startTime;
     int timeLeft = 5000;
 
@@ -83,6 +85,10 @@ public class Questionnaire extends AppCompatActivity {
         etDenominator2 = (EditText) findViewById(R.id.etDenominatorStep2);
         btOK2 = (Button) findViewById(R.id.btOK2);
 
+        btSkip = (Button) findViewById(R.id.btSkip);
+
+        currentPlayerName = getIntent().getStringExtra("PlayerName");
+
         gen = new Generator ();
         gen.generateLists();
 
@@ -92,6 +98,8 @@ public class Questionnaire extends AppCompatActivity {
         startTime = timeLeft + System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable, 0);
 
+        gm = new GameManager(this);
+        gm.newGame(currentPlayerName);
     }
 
     public void timeOut(){
@@ -263,14 +271,23 @@ public class Questionnaire extends AppCompatActivity {
 
     public void addListenerOnSkipButton() {
 
-        Button b = (Button) findViewById(R.id.btSkip);
+        //Button b = (Button) findViewById(R.id.btSkip);
 
-        b.setOnClickListener(new View.OnClickListener() {
+        btSkip.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                loadNewExercise();
+                if (gm.getSkipNumber() < gm.getMaxSkipNumber()){
+                    gm.updateSkipNumber();
+                    gm.updateScoreBase();
+                    gm.levelDown();
+                    loadNewExercise();
+                }
+
+                if (gm.getSkipNumber() >= gm.getMaxSkipNumber()){
+                    btSkip.setEnabled(false);
+                }
 
             }
 
