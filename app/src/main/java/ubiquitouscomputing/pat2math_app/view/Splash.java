@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Handler;
 
 import ubiquitouscomputing.pat2math_app.R;
-import ubiquitouscomputing.pat2math_app.controller.Preferencias;
 
 public class Splash extends AppCompatActivity {
 

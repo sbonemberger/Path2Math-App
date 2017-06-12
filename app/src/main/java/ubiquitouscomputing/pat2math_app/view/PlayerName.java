@@ -35,6 +35,10 @@ public class PlayerName extends AppCompatActivity {
 
                 EditText e = (EditText) findViewById(R.id.etPlayerName);
 
+                if (e.getText().toString().equals("")){
+                    return;
+                }
+
                 Intent i =  new Intent(PlayerName.this, Questionnaire.class);
                 i.putExtra("PlayerName", e.getText().toString());
                 startActivity(i);

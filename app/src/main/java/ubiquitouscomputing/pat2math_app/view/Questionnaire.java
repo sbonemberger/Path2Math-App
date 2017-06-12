@@ -32,9 +32,10 @@ public class Questionnaire extends AppCompatActivity {
     String currentPlayerName;
     GameManager gm;
     long startTime;
-    int timeLeft = 5000;
+    int timeLeft = 50000;
 
     Handler timerHandler = new Handler();
+
     Runnable timerRunnable = new Runnable() {
         @Override
         public void run() {
@@ -47,7 +48,7 @@ public class Questionnaire extends AppCompatActivity {
 
             timerHandler.postDelayed(this, 500);
 
-            if (seconds <= 0){
+            if (seconds <= 0 && minutes <= 0){
                 timeOut();
             }
         }
@@ -67,6 +68,7 @@ public class Questionnaire extends AppCompatActivity {
         addListenerOnStep2Button();
         addListenerOnSkipButton();
         loadNewExercise();
+
     }
 
     public void init(){
@@ -96,6 +98,7 @@ public class Questionnaire extends AppCompatActivity {
         txTimer.setText(Integer.toString(timeLeft/1000));
 
         startTime = timeLeft + System.currentTimeMillis();
+
         timerHandler.postDelayed(timerRunnable, 0);
 
         gm = new GameManager(this);
@@ -103,12 +106,14 @@ public class Questionnaire extends AppCompatActivity {
     }
 
     public void timeOut(){
-        timerHandler.removeCallbacks(timerRunnable);
 
+        timerHandler.removeCallbacks(timerRunnable);
         endGame();
     }
 
     public void endGame() {
+
+        gm.endGame();
 
         int secondsDelayed = 1;
         new Handler().postDelayed(new Runnable() {
@@ -121,7 +126,7 @@ public class Questionnaire extends AppCompatActivity {
 
     public void loadNewExercise(){
 
-        ex = gen.generateExercise(0);
+        ex = gen.generateExercise(gm.getCurrentPlayer().getPlayerLevel());
         HintBank.createHintBank();
 
         hideStep2();
@@ -153,8 +158,8 @@ public class Questionnaire extends AppCompatActivity {
 
     }
 
-    public void updateImage (){
-        if (fb.isCorrectAnswer()){
+    public void updateImage (boolean correctAnswer){
+        if (correctAnswer){
             imgCorrect.setVisibility(View.VISIBLE);
             imgIncorrect.setVisibility(View.INVISIBLE);
         }
@@ -188,9 +193,9 @@ public class Questionnaire extends AppCompatActivity {
         etDenominator.setText(etDenominator2.getText());
     }
 
-    public void updateStep2() {
+    public void updateStep2(boolean correctAnswer) {
 
-        if (fb.isCorrectAnswer()){
+        if (correctAnswer){
             txNumerator2.setText(etNumerator.getText());
             txDenominator2.setText(etDenominator.getText());
         }
@@ -206,6 +211,14 @@ public class Questionnaire extends AppCompatActivity {
     public void answer(double numerator, double denominator ){
 
          fb = ex.answer(numerator,denominator);
+
+    }
+
+    public void addPointsToScore(){
+
+        int calculatedPoints = gm.getCorrectAnswerPoints() * (gm.getCurrentPlayer().getPlayerLevel()+1);
+
+        gm.updateScore(calculatedPoints);
 
     }
 
@@ -236,9 +249,29 @@ public class Questionnaire extends AppCompatActivity {
 
                 if (checkFieldsStep1()){
                     answer(Double.parseDouble(etNumerator.getText().toString()),Double.parseDouble(etDenominator.getText().toString()));
-                    updateImage();
-                    showStep2();
-                    updateStep2();
+
+
+                    if (fb.isFinalAnswer() && fb.isCorrectAnswer()){
+                        addPointsToScore();
+                        gm.updateCorrectAnswerSeries(1);
+
+                        if (gm.getCorrectAnswersInARow() == gm.getCorrecAnswersForLevelUp()){
+                            gm.levelUp();
+                            startTime  = startTime + gm.getLevelUpMiliSeconds();
+                        }
+
+                        loadNewExercise();
+                    }
+                    else{
+                        if (!fb.isCorrectAnswer()){
+                            gm.updateCorrectAnswerSeries(-1);
+                        }
+
+                        updateImage(fb.isCorrectAnswer());
+                        showStep2();
+                        updateStep2(fb.isCorrectAnswer());
+
+                    }
                 }
 
             }
@@ -258,9 +291,27 @@ public class Questionnaire extends AppCompatActivity {
 
                 if (checkFieldsStep2()){
                     answer(Double.parseDouble(etNumerator2.getText().toString()),Double.parseDouble(etDenominator2.getText().toString()));
-                    updateImage();
-                    updateStep1();
-                    updateStep2();
+
+                    if (fb.isFinalAnswer() && fb.isCorrectAnswer()){
+                        addPointsToScore();
+                        gm.updateCorrectAnswerSeries(1);
+
+                        if (gm.getCorrectAnswersInARow() == gm.getCorrecAnswersForLevelUp()){
+                            gm.levelUp();
+                        }
+
+                        loadNewExercise();
+                    }
+                    else{
+                        if (!fb.isCorrectAnswer()){
+                            gm.updateCorrectAnswerSeries(-1);
+                        }
+
+                        updateImage(fb.isCorrectAnswer());
+                        updateStep1();
+                        updateStep2(fb.isCorrectAnswer());
+                    }
+
                 }
 
             }
@@ -280,7 +331,7 @@ public class Questionnaire extends AppCompatActivity {
 
                 if (gm.getSkipNumber() < gm.getMaxSkipNumber()){
                     gm.updateSkipNumber();
-                    gm.updateScoreBase();
+                    gm.updateScore(gm.getSkipLoosingPoints());
                     gm.levelDown();
                     loadNewExercise();
                 }

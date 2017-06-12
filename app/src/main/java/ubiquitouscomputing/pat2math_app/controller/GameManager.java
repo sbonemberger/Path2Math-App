@@ -2,6 +2,8 @@ package ubiquitouscomputing.pat2math_app.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,33 +16,48 @@ import ubiquitouscomputing.pat2math_app.model.Score;
 public class GameManager {
     private Score currentScore;
     private ArrayList<Score> scores;
+    private ArrayList<Player> players;
     private Player currentPlayer;
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
     private Context context;
     private Gson gson;
-    private int skipNumber, maxSkipNumber, correctAnswersInARow, correcAnswersForLevelUp;
+    private int skipNumber, maxSkipNumber, correctAnswersInARow, correcAnswersForLevelUp, correctAnswerPoints, skipLoosingPoints, levelUpMiliSeconds;
 
     public GameManager(Context context){
         this.context = context;
-        this.preferences = context.getSharedPreferences("", Context.MODE_PRIVATE);
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
+//                context.getSharedPreferences("", Context.MODE_PRIVATE);
+
+  //      SharedPreferences prefs =
+
         this.editor = this.preferences.edit();
         this.gson = new Gson();
         this.skipNumber = 0;
         this.maxSkipNumber = 3;
         this.correctAnswersInARow = 0;
         this.correcAnswersForLevelUp = 3;
+        this.correctAnswerPoints = 10;
+        this.skipLoosingPoints = -10;
+        this.levelUpMiliSeconds = 30000;
     }
 
     public void newGame(String playerName){
 
-        ArrayList<Player> playerBase = getPlayerBase();
-        this.scores = getScoreBase();
+        players = getPlayerBase();
+        scores = getScoreBase();
 
-        if (playerBase!= null && !playerBase.isEmpty()){
-            for (int i = 0; i<playerBase.size(); i++){
-                if (playerName.equals(playerBase.get(i).getName())){
-                    currentPlayer = playerBase.get(i);
+        if (scores == null){
+            scores = new ArrayList<Score>();
+        }
+
+        currentScore = new Score(playerName,0);
+        scores.add(currentScore);
+
+        if (players!= null && !players.isEmpty()){
+            for (int i = 0; i<players.size(); i++){
+                if (playerName.equals(players.get(i).getName())){
+                    currentPlayer = players.get(i);
                     return;
                 }
             }
@@ -48,20 +65,40 @@ public class GameManager {
 
         currentPlayer = new Player(playerName);
 
-        playerBase = new ArrayList<Player>();
-        playerBase.add(currentPlayer);
+        players = new ArrayList<Player>();
+        players.add(currentPlayer);
 
-        updatePlayerBase(playerBase);
+        updatePlayerBase();
     }
 
-    public void updatePlayerBase(ArrayList<Player> playerBase){
-        String json = this.gson.toJson(playerBase);
+    public void updateScore(int points){
+
+        this.currentScore.setPoints(this.currentScore.getPoints() + points);
+
+        if (this.currentScore.getPoints() < 0){
+            this.currentScore.setPoints(0);
+        }
+
+    }
+
+    public void updateCorrectAnswerSeries (int i){
+
+        if (i < 0){
+            this.correctAnswersInARow = 0;
+            return;
+        }
+
+        this.correctAnswersInARow++;
+    }
+
+    public void updatePlayerBase(){
+        String json = this.gson.toJson(players);
         editor.putString("PlayerBase", json);
         editor.commit();
     }
 
     public void updateScoreBase(){
-        String json = this.gson.toJson(this.scores);
+        String json = this.gson.toJson(scores);
         editor.putString("ScoreBase", json);
         editor.commit();
     }
@@ -93,7 +130,7 @@ public class GameManager {
     }
 
     public void endGame(){
-        //updatePlayerBase();
+        updatePlayerBase();
         updateScoreBase();
     }
 
@@ -110,4 +147,16 @@ public class GameManager {
     public int getMaxSkipNumber(){
         return this.maxSkipNumber;
     }
+
+    public int getCorrectAnswerPoints() {return this.correctAnswerPoints;}
+
+    public int getCorrectAnswersInARow() {return this.correctAnswersInARow;}
+
+    public int getCorrecAnswersForLevelUp() {return this.correcAnswersForLevelUp;}
+
+    public Player getCurrentPlayer() {return this.currentPlayer;}
+
+    public int getSkipLoosingPoints() {return this.skipLoosingPoints;}
+
+    public int getLevelUpMiliSeconds() {return this.levelUpMiliSeconds;}
 }
